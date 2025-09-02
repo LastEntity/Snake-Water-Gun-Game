@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Snake, Water, Gun Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background: #f0f8ff;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .game-container {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 28px rgba(0,0,0,0.09);
+            padding: 30px 40px;
+            text-align: center;
+        }
+        h1 {
+            color: #1a237e;
+            margin-bottom: 1em;
+        }
+        .choices {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            margin-bottom: 1em;
+        }
+        .choice-btn {
+            background: #e3eafc;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.3em;
+            padding: 16px 28px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .choice-btn:hover {
+            background: #b6ccfc;
+        }
+        .result-box {
+            margin-top: 1.5em;
+            font-size: 1.2em;
+            color: #333;
+            min-height: 70px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Snake, Water, Gun</h1>
+        <div class="choices">
+            <button class="choice-btn" onclick="play('s')">🐍 Snake</button>
+            <button class="choice-btn" onclick="play('w')">💧 Water</button>
+            <button class="choice-btn" onclick="play('g')">🔫 Gun</button>
+        </div>
+        <div class="result-box" id="result"></div>
+    </div>
+
+    <script>
+        const choices = { s: 'Snake', w: 'Water', g: 'Gun' };
+        const winMap = {
+            's-w': 'win', // Snake drinks water
+            'w-g': 'win', // Water disables gun
+            'g-s': 'win', // Gun kills snake
+        };
+
+        function play(userChoice) {
+            const options = ['s','w','g'];
+            const computerChoice = options[Math.floor(Math.random()*3)];
+            let resultText = `<strong>You:</strong> ${choices[userChoice]}<br>
+                <strong>Computer:</strong> ${choices[computerChoice]}<br>`;
+
+            if (userChoice === computerChoice) {
+                resultText += "<b>It's a Draw!</b>";
+            } else if (winMap[`${userChoice}-${computerChoice}`]) {
+                resultText += "<span style='color:green;'><b>You Win!</b></span>";
+            } else {
+                resultText += "<span style='color:#d32f2f;'><b>You Lose!</b></span>";
+            }
+            document.getElementById('result').innerHTML = resultText;
+        }
+    </script>
+</body>
+</html>
