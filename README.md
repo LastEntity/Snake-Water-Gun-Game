@@ -9,7 +9,7 @@ Water douses Gun 💧 > 🔫
 Gun kills Snake 🔫 > 🐍
 
 
-Play against the computer and see who wins!
+Play against the computer and see who wins!!
 
 
 ---
